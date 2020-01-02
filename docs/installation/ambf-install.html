@@ -94,7 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Installation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installing AMBF Simulator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blabla">blabla</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tested-platforms">Tested Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building">Building</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ambf-blender-addon.html">Installing AMBF Blender Addon</a></li>
@@ -175,10 +176,40 @@
             
   <div class="section" id="installing-ambf-simulator">
 <span id="install-ambf-simulator"></span><h1>Installing AMBF Simulator<a class="headerlink" href="#installing-ambf-simulator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="blabla">
-<h2>blabla<a class="headerlink" href="#blabla" title="Permalink to this headline">¶</a></h2>
-<p><strong>AMBF Simulator</strong>  - package allowing for creating and interacting with robot models described in AMBF YAML format.
-Please clone it from its [GitHub repository](<a class="reference external" href="https://github.com/WPI-AIM/ambf_addon">https://github.com/WPI-AIM/ambf_addon</a> “AMBF Blender Addon repository”).</p>
+<div class="section" id="tested-platforms">
+<h2>Tested Platforms<a class="headerlink" href="#tested-platforms" title="Permalink to this headline">¶</a></h2>
+<p>AMBF has been tested on <strong>Ubuntu 16.04</strong> and <strong>Ubuntu 18.04</strong>. We need a few extra steps on <strong>Ubuntu 14.04</strong>, please create an issue if you would like to get instructions for that.</p>
+<p>Even though it is recommended to use Linux for the full feature set of AMBF Simulator using ROS, AMBF has been tested on <strong>MacOS Maverick</strong> and <strong>MacOS Mojave</strong> without ROS support.</p>
+</div>
+<div class="section" id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
+<p>On Linux machines, you might need to install the <code class="code docutils literal notranslate"><span class="pre">libasound2-dev</span></code> package.</p>
+<p>Boost libraires ship with Ubuntu systems, but on Mac OS, you might need to install them explicitly.</p>
+<p>For this purpose, on <strong>Mac OS</strong>, if you don’t have Boost</p>
+<ol class="arabic simple">
+<li>Install <strong>Xcode</strong> from App Store</li>
+<li>Install <strong>command line tools</strong> by running in terminal <code class="code docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code></li>
+<li>Install <strong>Homebrew</strong> view running this in terminal <code class="code docutils literal notranslate"><span class="pre">/usr/bin/ruby</span> <span class="pre">-e</span> <span class="pre">&quot;$(curl</span> <span class="pre">-fsSL</span> <span class="pre">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span></code></li>
+<li>Install <strong>boost</strong> by running the following in the terminal <code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">boost</span></code></li>
+</ol>
+<p>To build the framework (Linux and Mac-OS):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+git clone https://github.com/WPI-AIM/ambf.git
+<span class="nb">cd</span> ambf <span class="o">&amp;&amp;</span> mkdir build
+<span class="nb">cd</span> build
+cmake ..
+make
+</pre></div>
+</div>
+<p>On Linux systems, please source the correct folder to achieve system wide availability of AMBF ROS modules.
+While in the build folder, you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ./devel/setup.bash
+</pre></div>
+</div>
+<p>You can also permanently add the install location in your .bashrc with the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;source ~/ambf/build/devel/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
+</pre></div>
+</div>
 </div>
 </div>
 

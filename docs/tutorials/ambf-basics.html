@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Quickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subsection">Subsection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-the-simulator">Launching the Simulator:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="using-blender-addon.html">Using AMBF Blender Addon</a></li>
@@ -181,9 +181,39 @@
             
   <div class="section" id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subsection">
-<h2>Subsection<a class="headerlink" href="#subsection" title="Permalink to this headline">¶</a></h2>
-<p>This is test.</p>
+<div class="section" id="launching-the-simulator">
+<h2>Launching the Simulator:<a class="headerlink" href="#launching-the-simulator" title="Permalink to this headline">¶</a></h2>
+<p>Having successfully completed the steps above running is Simulator is easy. Depending
+on what OS you’re using, follow the steps below, we can look at the application flags using the -h command-line option:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/ambf/bin/&lt;os&gt;
+./ambf_simulator -h
+</pre></div>
+</div>
+<p>This should show you the available command line options. Some of the command line options are for testing purposes and might be deprecated in future versions.</p>
+<p>For our usage, one of the most important flags is the -l flag. The AMBF Simulator uses the <strong>yaml</strong> file located in [<cite>ambf/ambf_models/descriptions/launch.yaml</cite>](<a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml</a>) to
+load robot/multi-body models, haptic devices, simulated end-effectors, and the world. You can see the contents
+of this file by launching it in your favorite text editor. For launching specific robots we can use the corresponding index of the multi-body in <cite>multibody configs:</cite> data-block. To launch a multi-body and index 3, we can simply run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">~/ambf/bin/&lt;os&gt;</span>
+<span class="pre">./ambf_simulator</span> <span class="pre">-l</span> <span class="pre">3</span>
+<span class="pre">`</span></code></p>
+<p>If we want to run multiple robots, we can simply use a comma-separated list as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">~/ambf/bin/&lt;os&gt;</span>
+<span class="pre">./ambf_simulator</span> <span class="pre">-l</span> <span class="pre">1,6,10</span>
+<span class="pre">`</span></code>
+If we don’t specify the <cite>-l</cite> flag, the first multi-body defined in the <cite>multibody configs</cite> data block is launched</p>
+<p>There is a second option to the launch desired multi-bodies, if one has an AMBF description file in the home directory <cite>/users/potato/tests/robot.yaml</cite>, this file can be launched directly as follows</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">~/ambf/bin/&lt;os&gt;</span>
+<span class="pre">./ambf_simulator</span> <span class="pre">-a</span> <span class="pre">/users/potato/tests/robot.yaml</span>
+<span class="pre">`</span></code></p>
+<p>Similarly, as it the case with the <cite>-l</cite> flag, multiple filenames can be launch by comma separated values. E.g.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">~/ambf/bin/&lt;os&gt;</span>
+<span class="pre">./ambf_simulator</span> <span class="pre">-a</span> <span class="pre">/users/potato/tests/robot.yaml,/users/potato/tests/car.yaml</span>
+<span class="pre">`</span></code></p>
+<p>Lastly, the <cite>-l</cite> and <cite>-a</cite> flags can be used together to launch some files based on the index and some based on the filenames.</p>
 </div>
 </div>
 
