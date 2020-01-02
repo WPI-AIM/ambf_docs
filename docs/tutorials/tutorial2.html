@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial 2 &mdash; Read the Docs Sphinx Theme 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Read the Docs Sphinx Theme</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial 2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/tutorial2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial-2">
+<h1>Tutorial 2<a class="headerlink" href="#tutorial-2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="theme-options">
+<h2>Theme options<a class="headerlink" href="#theme-options" title="Permalink to this headline">¶</a></h2>
+<p>The following options can be defined in your project’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file, using
+the <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_theme_options" title="(in Sphinx v3.0.0+/0319faf8f)"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme_options</span></code></a> configuration option.</p>
+<p>For example:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;canonical_url&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;analytics_id&#39;</span><span class="p">:</span> <span class="s1">&#39;UA-XXXXXXX-1&#39;</span><span class="p">,</span>  <span class="c1">#  Provided by Google in your dashboard</span>
+    <span class="s1">&#39;logo_only&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;display_version&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;prev_next_buttons_location&#39;</span><span class="p">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;style_external_links&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;vcs_pageview_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;style_nav_header_background&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="c1"># Toc options</span>
+    <span class="s1">&#39;collapse_navigation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;sticky_navigation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;navigation_depth&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;includehidden&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;titles_only&#39;</span><span class="p">:</span> <span class="kc">False</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="table-of-contents-options">
+<h3>Table of contents options<a class="headerlink" href="#table-of-contents-options" title="Permalink to this headline">¶</a></h3>
+<p>The following options change how <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-toctree" title="(in Sphinx v3.0.0+/0319faf8f)"><code class="docutils literal notranslate"><span class="pre">toctree</span></code></a> directives generate
+documentation navigation.</p>
+<dl class="confval">
+<dt id="confval-collapse_navigation">
+<code class="descname">collapse_navigation</code><a class="headerlink" href="#confval-collapse_navigation" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>With this enabled, navigation entries are not expandable – the <code class="docutils literal notranslate"><span class="pre">[+]</span></code>
+icons next to each entry are removed.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-sticky_navigation">
+<code class="descname">sticky_navigation</code><a class="headerlink" href="#confval-sticky_navigation" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Scroll the navigation with the main page content as you scroll the page.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-navigation_depth">
+<code class="descname">navigation_depth</code><a class="headerlink" href="#confval-navigation_depth" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">integer</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">4</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>The maximum depth of the table of contents tree. Set
+this to <code class="docutils literal notranslate"><span class="pre">-1</span></code> to allow unlimited depth.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-includehidden">
+<code class="descname">includehidden</code><a class="headerlink" href="#confval-includehidden" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Specifies if the navigation includes hidden table(s) of contents – that is,
+any <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-toctree" title="(in Sphinx v3.0.0+/0319faf8f)"><code class="docutils literal notranslate"><span class="pre">toctree</span></code></a> directive that is marked with the <code class="docutils literal notranslate"><span class="pre">:hidden:</span></code>
+option.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-titles_only">
+<code class="descname">titles_only</code><a class="headerlink" href="#confval-titles_only" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body">False</td>
+</tr>
+</tbody>
+</table>
+<p>When enabled, page subheadings are not included in the
+navigation.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Setting <a class="reference internal" href="#confval-collapse_navigation"><code class="xref std std-confval docutils literal notranslate"><span class="pre">collapse_navigation</span></code></a> to <code class="docutils literal notranslate"><span class="pre">False</span></code> and using a high value
+for <a class="reference internal" href="#confval-navigation_depth"><code class="xref std std-confval docutils literal notranslate"><span class="pre">navigation_depth</span></code></a> on projects with many files and a deep file
+structure can cause long compilation times and can result in HTML files that
+are significantly larger in file size.</p>
+</div>
+</div>
+<div class="section" id="miscellaneous-options">
+<h3>Miscellaneous options<a class="headerlink" href="#miscellaneous-options" title="Permalink to this headline">¶</a></h3>
+<dl class="confval">
+<dt id="confval-analytics_id">
+<code class="descname">analytics_id</code><a class="headerlink" href="#confval-analytics_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>If specified, Google Analytics’ javascript is included in your pages.
+Set the value to the ID provided to you by google (like <code class="docutils literal notranslate"><span class="pre">UA-XXXXXXX</span></code>).</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-canonical_url">
+<code class="descname">canonical_url</code><a class="headerlink" href="#confval-canonical_url" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">URL</td>
+</tr>
+</tbody>
+</table>
+<p>This will specify a <a class="reference external" href="https://en.wikipedia.org/wiki/Canonical_link_element">canonical URL</a> meta link element to tell search
+engines which URL should be ranked as the primary URL for your
+documentation. This is important if you have multiple URLs that your
+documentation is available through. The URL points to the root path of the
+documentation and requires a trailing slash.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-display_version">
+<code class="descname">display_version</code><a class="headerlink" href="#confval-display_version" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the version number is shown at the top of the sidebar.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-logo_only">
+<code class="descname">logo_only</code><a class="headerlink" href="#confval-logo_only" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Only display the logo image, do not display the project name at the top of
+the sidebar</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-prev_next_buttons_location">
+<code class="descname">prev_next_buttons_location</code><a class="headerlink" href="#confval-prev_next_buttons_location" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">bottom</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Location to display <span class="guilabel">Next</span> and <span class="guilabel">Previous</span> buttons. This
+can be either <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">both</span></code> , or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-style_external_links">
+<code class="descname">style_external_links</code><a class="headerlink" href="#confval-style_external_links" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Add an icon next to external links.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-vcs_pageview_mode">
+<code class="descname">vcs_pageview_mode</code><a class="headerlink" href="#confval-vcs_pageview_mode" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">blob</span></code> or <code class="docutils literal notranslate"><span class="pre">view</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Changes how to view files when using <code class="docutils literal notranslate"><span class="pre">display_github</span></code>, <code class="docutils literal notranslate"><span class="pre">display_gitlab</span></code>,
+etc.  When using GitHub or GitLab this can be: <code class="docutils literal notranslate"><span class="pre">blob</span></code> (default), <code class="docutils literal notranslate"><span class="pre">edit</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">raw</span></code>. On Bitbucket, this can be either: <code class="docutils literal notranslate"><span class="pre">view</span></code> (default) or
+<code class="docutils literal notranslate"><span class="pre">edit</span></code>.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-style_nav_header_background">
+<code class="descname">style_nav_header_background</code><a class="headerlink" href="#confval-style_nav_header_background" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">#2980B9</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Changes the background of the search area in the navigation bar. The value
+can be anything valid in a CSS <cite>background</cite> property.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="file-wide-metadata">
+<h2>File-wide metadata<a class="headerlink" href="#file-wide-metadata" title="Permalink to this headline">¶</a></h2>
+<p>The following options can be used as <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/field-lists.html#metadata" title="(in Sphinx v3.0.0+/0319faf8f)"><span class="xref std std-ref">file-wide metadata</span></a>:</p>
+<dl class="confval">
+<dt id="confval-github_url">
+<code class="descname">github_url</code><a class="headerlink" href="#confval-github_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force the <span class="guilabel">Edit on GitHub</span> button to use the configured URL.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-bitbucket_url">
+<code class="descname">bitbucket_url</code><a class="headerlink" href="#confval-bitbucket_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force the <span class="guilabel">Edit on Bitbucket</span> button to use the configured URL.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-gitlab_url">
+<code class="descname">gitlab_url</code><a class="headerlink" href="#confval-gitlab_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force the <span class="guilabel">Edit on GitLab</span> button to use the configured URL.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="other-configuration">
+<h2>Other configuration<a class="headerlink" href="#other-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="adding-a-logo">
+<h3>Adding a logo<a class="headerlink" href="#adding-a-logo" title="Permalink to this headline">¶</a></h3>
+<p>Using the Sphinx standard option <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_logo" title="(in Sphinx v3.0.0+/0319faf8f)"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_logo</span></code></a>,
+you can set an image file to be used as a logo at the top of the sidebar. The
+theme option <a class="reference internal" href="#confval-logo_only"><code class="xref std std-confval docutils literal notranslate"><span class="pre">logo_only</span></code></a> also allows for <em>only</em> the logo to be shown
+at the top of the sidebar.</p>
+</div>
+<div class="section" id="adding-custom-css-or-javascript">
+<h3>Adding custom CSS or Javascript<a class="headerlink" href="#adding-custom-css-or-javascript" title="Permalink to this headline">¶</a></h3>
+<p>Adding custom CSS or Javascript can help you alter the look and feel of this
+theme without forking the theme for local use.</p>
+<p>In order to add custom CSS or Javascript without disrupting the existing theme
+files, you can <a class="reference external" href="https://docs.readthedocs.io/en/latest/guides/adding-custom-css.html" title="(in Read the Docs v3.11.1)"><span class="xref std std-doc">add files to be included in your documentation output</span></a>.</p>
+</div>
+</div>
+<div class="section" id="how-the-table-of-contents-displays">
+<h2>How the table of contents displays<a class="headerlink" href="#how-the-table-of-contents-displays" title="Permalink to this headline">¶</a></h2>
+<p>Currently the left menu will build based upon any <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directives defined
+in your source files.  It outputs 4 levels of depth by default, to allow for
+quick navigation through topics. If no TOC trees are defined, Sphinx’s default
+behavior is to use the page headings instead.</p>
+<p>It’s important to note that if you don’t follow the same styling for your reST
+headings across your documents, the TOC tree will build incorrectly, and the
+resulting menu might not show the correct depth when it renders.</p>
+<p>Also note that by default the table of contents is set with
+<code class="docutils literal notranslate"><span class="pre">includehidden=True</span></code>. This allows you to set a hidden TOC in your index file
+with the <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#toctree-directive" title="(in Sphinx v3.0.0+/0319faf8f)"><span class="xref std std-ref">:hidden:</span></a> property that will allow you
+to build a TOC without it rendering in your index.</p>
+<p>By default, the navigation will “stick” to the screen as you scroll. However if
+your TOC is not tall enough, it will revert to static positioning. To disable the
+sticky navigation altogether, change the <a class="reference internal" href="#confval-sticky_navigation"><code class="xref std std-confval docutils literal notranslate"><span class="pre">sticky_navigation</span></code></a> theme option.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Dave Snider, Read the Docs, Inc. &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

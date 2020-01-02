@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using AMBF Blender Addon &mdash; Read the Docs Sphinx Theme 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Robot modeling basics" href="robot-modeling-basics.html" />
+    <link rel="prev" title="Quickstart" href="ambf-basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ambf-basics.html">Quickstart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using AMBF Blender Addon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subtitle-goes-here">Subtitle goes here</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#table-of-contents-options">Table of contents options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#via-git-or-download">Via Git or Download</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="robot-modeling-basics.html">Robot modeling basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdf-import.html">SDF file import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python-client.html">Python Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ros-interface.html">ROS Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting-data.html">Plotting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-mechanisms.html">Parallel mechanisms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Read the Docs Sphinx Theme</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Using AMBF Blender Addon</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/using-blender-addon.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-ambf-blender-addon">
+<h1>Using AMBF Blender Addon<a class="headerlink" href="#using-ambf-blender-addon" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we will learn how to create and modify robot models in the <cite>.ambf</cite> format using Blender software. We will be using Blender with a dedicated addon which allows to create and modify ambf models. Please refer to the addon <a class="reference internal" href="../installation/ambf-blender-addon.html#install-ambf-addon"><span class="std std-ref">installation section</span></a> if needed.</p>
+<p>Install the package (or add it to your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file):</p>
+<p>See <a class="reference internal" href="../installation/ambf-blender-addon.html"><span class="doc">Input Preference</span></a> for more information on configuring peripherals.</p>
+<p><span class="menuselection">File ‣ Recover ‣ Last Session</span></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><th class="stub">3-button Mouse</th>
+<td><kbd class="kbd docutils literal notranslate">LMB</kbd></td>
+<td><kbd class="kbd docutils literal notranslate">MMB</kbd></td>
+<td><kbd class="kbd docutils literal notranslate">RMB</kbd></td>
+</tr>
+<tr class="row-even"><th class="stub">2-button Mouse</th>
+<td><kbd class="kbd docutils literal notranslate">LMB</kbd></td>
+<td><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd></td>
+<td><kbd class="kbd docutils literal notranslate">RMB</kbd></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">See <span class="xref std std-doc">Input Preference</span> for more information on configuring peripherals.</p>
+</div>
+<div class="section" id="subtitle-goes-here">
+<h2>Subtitle goes here<a class="headerlink" href="#subtitle-goes-here" title="Permalink to this headline">¶</a></h2>
+<p>Abbreviation testing: 3D mice or <abbr title="N-Degrees of Freedom">NDOF</abbr> devices are hardware that you can use to navigate a scene in Blender.
+Currently only devices made by 3Dconnexion are supported.
+These devices allow you to explore a scene, as well as <span class="xref std std-ref">Fly/Walk modes</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can also change the default keymap and
+default hotkeys from the <span class="xref std std-doc">Preferences</span>,
+however, this manual assumes you are using the default keymap.</p>
+</div>
+<dl class="docutils">
+<dt>Shortcuts</dt>
+<dd><p class="first">Presets for the default <span class="xref std std-doc">keymap</span> for Blender.
+Note that this manual assumes that you use the “Blender” keymap.</p>
+<dl class="last docutils">
+<dt>Blender</dt>
+<dd>This is the default keymap.
+Read more about this keymap <span class="xref std std-doc">here</span>.</dd>
+<dt>Blender 2.7x</dt>
+<dd>This keymap is intended to match the last major series of Blender versions
+and is designed for people upgrading who do not want to learn the updated keymap.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="table-of-contents-options">
+<h2>Table of contents options<a class="headerlink" href="#table-of-contents-options" title="Permalink to this headline">¶</a></h2>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install sphinx_rtd_theme
+</pre></div>
+</div>
+<p>In your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;sphinx_rtd_theme&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Adding this theme as an extension is what enables localization of theme
+strings in your translated output. If these strings are not translated in
+your output, either we lack the localized strings for your locale, or you
+are using an old version of the theme.</p>
+</div>
+</div>
+<div class="section" id="via-git-or-download">
+<h2>Via Git or Download<a class="headerlink" href="#via-git-or-download" title="Permalink to this headline">¶</a></h2>
+<p>This is a simple picture below:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/kuka_base_frame_selected.png"><img alt="Kuka Robot and frames" src="../_images/kuka_base_frame_selected.png" style="width: 388.0px; height: 497.0px;" /></a>
+<p class="caption"><span class="caption-text">This is the caption of the figure (a simple paragraph).</span></p>
+</div>
+<p>Symlink or subtree the <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme/sphinx_rtd_theme</span></code> repository into your documentation at
+<code class="docutils literal notranslate"><span class="pre">docs/_themes/sphinx_rtd_theme</span></code> then add the following two settings to your Sphinx
+<code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_themes&quot;</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="robot-modeling-basics.html" class="btn btn-neutral float-right" title="Robot modeling basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ambf-basics.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Dave Snider, Read the Docs, Inc. &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
