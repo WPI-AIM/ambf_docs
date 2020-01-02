@@ -12,11 +12,11 @@ from sphinx.locale import _
 from sphinx_rtd_theme import __version__
 
 
-project = u'Read the Docs Sphinx Theme'
+project = u'AMBF Docs'
 slug = re.sub(r'\W+', '-', project.lower())
 version = __version__
 release = __version__
-author = u'Dave Snider, Read the Docs, Inc. & contributors'
+author = u'WPI AIM LAB'
 copyright = author
 language = 'en'
 

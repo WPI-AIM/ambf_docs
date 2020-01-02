@@ -5,17 +5,7 @@
 Header One
 ==========
 
-Header Two
-==========
-.. |ndof| replace:: :abbr:`NDOF (N-Degrees of Freedom)`
-
-This is |ndof| Abbreviation testing: 3D mice or :abbr:`NDOF (N-Degrees of Freedom)` devices are hardware that you can use to navigate a scene
-
-|RST| is a little annoying to type over and over, especially
-when writing about |RST| itself, and spelling out the
-bicapitalized word |RST| every time isn't really necessary for
-|RST| source readability.
-
+AMBF Documentation.
 
 Header Three
 ------------
