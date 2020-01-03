@@ -304,6 +304,9 @@
 <h3>Controlling via RQT GUI<a class="headerlink" href="#controlling-via-rqt-gui" title="Permalink to this headline">¶</a></h3>
 <p>As a demo, some premade RQT files have been placed in <a class="reference external" href="https://github.com/WPI-AIM/ambf/tree/master/ambf_utilities/rqt_perspectives">ambf/ambf_utilities/rqt_perspectives</a> to get you up and running.
 In a terminal, launch rqt_gui using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">rqt_gui</span> <span class="n">rqt_gui</span>
+</pre></div>
+</div>
 <p>Now in the top menu of rqt_gui, navigate to <cite>Perspectives</cite> -&gt; <cite>Import</cite></p>
 <p>From the file browser, head to <a class="reference external" href="https://github.com/WPI-AIM/ambf/tree/master/ambf_utilities/rqt_perspectives">ambf/ambf_utilities/rqt_perspectives</a> and select the <cite>ecm-psm-mtm-rqt-gui.perspective</cite> file.
 Note that AMBF could be installed in a non-default path in your system, so make sure to go to the correct path.</p>
@@ -415,15 +418,119 @@ Note that AMBF could be installed in a non-default path in your system, so make 
 <div class="section" id="controlling-a-toy-car-with-suspension">
 <h2>Controlling a Toy Car with Suspension<a class="headerlink" href="#controlling-a-toy-car-with-suspension" title="Permalink to this headline">¶</a></h2>
 <p>This is an example of how to begin using the AMBF Simulator. Let’s start by going to the launch file in your local cloned repository. This launch file is located in <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the base file for Coordination Application</span>
+<span class="nt">world config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./world/world.yaml</span>
+<span class="nt">color config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./color/colors.yaml</span>
+<span class="nt">input devices config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./input_devices/input_devices.yaml</span>
+<span class="nt">multibody configs</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">1. &quot;./multi-bodies/robots/blender-toy-car.yaml&quot;</span> <span class="c1">#0</span>
+  <span class="l l-Scalar l-Scalar-Plain">2. &quot;./multi-bodies/robots/blender-toy-car2.yaml&quot;</span> <span class="c1">#1</span>
+  <span class="l l-Scalar l-Scalar-Plain">3. &quot;./multi-bodies/robots/blender-neuro-robot.yaml&quot;</span> <span class="c1">#2</span>
+  <span class="l l-Scalar l-Scalar-Plain">4. &quot;./multi-bodies/robots/blender-raven2.yaml&quot;</span> <span class="c1">#3</span>
+  <span class="l l-Scalar l-Scalar-Plain">5. &quot;./multi-bodies/robots/blender-mtm.yaml&quot;</span> <span class="c1">#4</span>
+  <span class="l l-Scalar l-Scalar-Plain">6. &quot;./multi-bodies/robots/blender-psm.yaml&quot;</span> <span class="c1">#5</span>
+  <span class="l l-Scalar l-Scalar-Plain">7. &quot;./multi-bodies/robots/blender-ecm.yaml&quot;</span> <span class="c1">#6</span>
+  <span class="l l-Scalar l-Scalar-Plain">8. &quot;./multi-bodies/robots/blender-suj.yaml&quot;</span> <span class="c1">#7</span>
+  <span class="l l-Scalar l-Scalar-Plain">9. &quot;./multi-bodies/robots/blender-kuka.yaml&quot;</span> <span class="c1">#8</span>
+  <span class="l l-Scalar l-Scalar-Plain">10. &quot;./multi-bodies/robots/blender-pr2.yaml&quot;</span> <span class="c1">#9</span>
+  <span class="l l-Scalar l-Scalar-Plain">11. &quot;./multi-bodies/puzzles/parallel_structure.yaml&quot;</span> <span class="c1">#10</span>
+  <span class="l l-Scalar l-Scalar-Plain">12. &quot;./multi-bodies/puzzles/puzzle1.yaml&quot;</span> <span class="c1">#11</span>
+  <span class="l l-Scalar l-Scalar-Plain">13. &quot;./multi-bodies/puzzles/puzzle2.yaml&quot;</span> <span class="c1">#12</span>
+</pre></div>
+</div>
 <p>We can see that the <strong>Toy Car(s)</strong> are defined at Index 0 (Simple) and 1 (With Suspension).</p>
 <p>Now let’s launch the simulator as follows:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/ambf/bin/&lt;os&gt;
+./ambf_simulator -l <span class="m">1</span>
+</pre></div>
+</div>
 <p>Do you see the toy-car as shown below? If yes, great, otherwise close the simulator and double check to see that the indexes match the toy-car in your <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a> file.</p>
 <p>Now we need one more modification. Open the <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/multi-bodies/robots/blender-toy-car2.yaml">ambf/ambf_models/descriptions/multi-bodies/robots/blender-toy-car2.yaml</a> in your favorite text editor. We need to add some additional launch variables which would tell the simulator to <strong>publish children</strong> and <strong>joint names</strong> of <strong>non-root</strong> bodies. By default, the Simulator publishes the joint names and joint positions of root links and not the links that occur down the hierarchy. This can be easily changed in the AMBF description file of a <code class="code docutils literal notranslate"><span class="pre">Robot/Multibody</span></code>.</p>
 <p>Let’s scroll down to the definition of <strong>Body ShockFL</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">BODY ShockFL</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFL</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFL.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.3</span>
+  <span class="nt">collision margin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
+  <span class="nt">scale</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">-1.772</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.452</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.444</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.126</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.206</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.035</span><span class="p p-Indicator">}</span>
+  <span class="nt">inertial offset</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">friction</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">rolling</span><span class="p">:</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="nt"> static</span><span class="p">:</span> <span class="nv">0.5</span><span class="p p-Indicator">}</span>
+  <span class="nt">damping</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">angular</span><span class="p">:</span> <span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> linear</span><span class="p">:</span> <span class="nv">0.04</span><span class="p p-Indicator">}</span>
+  <span class="nt">restitution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="nt">collision groups</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+  <span class="nt">color components</span><span class="p">:</span>
+    <span class="nt">ambient</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">level</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">diffuse</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">}</span>
+    <span class="nt">specular</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">transparency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
 <p>We need to add three lines anywhere inside the body definition. The three lines that we want to add are
 as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">publish children names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">publish joint names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">publish joint positions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
 <p>Your resulting <strong>BODY ShockFL</strong> block should look like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">BODY ShockFL</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFL</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFL.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.3</span>
+  <span class="nt">collision margin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
+  <span class="nt">scale</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">publish children names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">publish joint names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">publish joint positions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">-1.772</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.452</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.444</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.126</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.206</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.035</span><span class="p p-Indicator">}</span>
+  <span class="nt">inertial offset</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">friction</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">rolling</span><span class="p">:</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="nt"> static</span><span class="p">:</span> <span class="nv">0.5</span><span class="p p-Indicator">}</span>
+  <span class="nt">damping</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">angular</span><span class="p">:</span> <span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> linear</span><span class="p">:</span> <span class="nv">0.04</span><span class="p p-Indicator">}</span>
+  <span class="nt">restitution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="nt">collision groups</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+  <span class="nt">color components</span><span class="p">:</span>
+    <span class="nt">ambient</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">level</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">diffuse</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.1845</span><span class="p p-Indicator">}</span>
+    <span class="nt">specular</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">transparency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
 <p>Let’s do the exact same thing in the <strong>BODY ShockFR</strong> block such that it should end up looking like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">BODY ShockFR</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFR</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ShockFR.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.3</span>
+  <span class="nt">collision margin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
+  <span class="nt">scale</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">publish children names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">publish joint names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">publish joint positions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">-1.772</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">-0.452</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.444</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.126</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.185</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.035</span><span class="p p-Indicator">}</span>
+  <span class="nt">inertial offset</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">friction</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">rolling</span><span class="p">:</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="nt"> static</span><span class="p">:</span> <span class="nv">0.5</span><span class="p p-Indicator">}</span>
+  <span class="nt">damping</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">angular</span><span class="p">:</span> <span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> linear</span><span class="p">:</span> <span class="nv">0.04</span><span class="p p-Indicator">}</span>
+  <span class="nt">restitution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="nt">collision groups</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+  <span class="nt">color components</span><span class="p">:</span>
+    <span class="nt">ambient</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">level</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">diffuse</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">0.1473</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">0.1473</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.1473</span><span class="p p-Indicator">}</span>
+    <span class="nt">specular</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">transparency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
 <p>Be mindful of the white spaces as YAML is similar to Python in picking whitespace and tabs.</p>
 <p>Now let’s launch the simulator as described in <a class="reference external" href="https://github.com/WPI-AIM/ambf/wiki/Launching-the-Simulator">launching the Simulator</a>. Do you see a toy car as shown below? If yes, great, otherwise close the simulator and double check to see if you have any unintended whitespaces or extra tab spaces in the <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a> file above. Correct these and relaunch the simulator</p>
 <div class="figure align-center">

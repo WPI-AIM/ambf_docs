@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Body Data-Block &mdash; AMBF Docs 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Joint Data-Block" href="multibody-joint-data-block.html" />
+    <link rel="prev" title="Header Data-Block" href="multibody-header-data-block.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../concepts.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="understanding-ros-message-payloads.html">The General Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-state-payload.html">Object State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-command-payload.html">Object Command Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-state-payload.html">World State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-command-payload.html">World Command Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="the-ambf-format.html">The AMBF Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-header-data-block.html">Header Data-Block</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Body Data-Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-joint-data-block.html">Joint Data-Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-sensor-data-block.html">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AMBF Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../concepts.html">Concepts</a> &raquo;</li>
+        
+      <li>Body Data-Block</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/concepts/multibody-body-data-block.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="body-data-block">
+<h1>Body Data-Block<a class="headerlink" href="#body-data-block" title="Permalink to this headline">¶</a></h1>
+<p>The Body Data-Block, as the name indicates, is used to define a body. The parameters defined in the data-block are explained below.</p>
+<ul class="simple">
+<li>#### name</li>
+</ul>
+<p>This name is the set to specify the topic name for this body. This name is prepended with the namespace parameter.</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a><a href="#id3"><span class="problematic" id="id4">*</span></a></p>
+<ul class="simple">
+<li>#### namespace</li>
+</ul>
+<p>The global namespace for this multibody file. The namespace can be overridden for a specific body in the body data-block
+<a href="#id5"><span class="problematic" id="id6">**</span></a><a href="#id7"><span class="problematic" id="id8">*</span></a></p>
+<ul class="simple">
+<li>#### mesh</li>
+</ul>
+<p>This specifies the mesh file for this body. If the mesh is empty, this body shall be treated without collision. The mesh name is combined with the high-resolution path to get the visual mesh and with low-resolution path to get the collision mesh.</p>
+<p><a href="#id9"><span class="problematic" id="id10">**</span></a><a href="#id11"><span class="problematic" id="id12">*</span></a></p>
+<ul class="simple">
+<li>#### collision mesh</li>
+</ul>
+<p>If a collision mesh is defined, it is used for low res collision mesh. If not, the <strong>mesh</strong> is used for collision. The <strong>collision mesh</strong> is combined with the <strong>low-resolution path</strong> to get the full filename of the low-resolution mesh
+<a href="#id13"><span class="problematic" id="id14">**</span></a><a href="#id15"><span class="problematic" id="id16">*</span></a></p>
+<ul class="simple">
+<li>#### shape</li>
+</ul>
+<p>Instead of specifying a mesh, a shape can be specified for the visual’s and collision. Supported shapes are BOX, CYLINDER, CAPSULE, CONE, and SPHERE
+<a href="#id17"><span class="problematic" id="id18">**</span></a><a href="#id19"><span class="problematic" id="id20">*</span></a></p>
+<ul class="simple">
+<li>#### geometry</li>
+</ul>
+<p>The geometry for the <strong>shape</strong> defined above. For a box, x, y, and z are required, for rest of the shapes; radius and height are required.
+<a href="#id21"><span class="problematic" id="id22">**</span></a><a href="#id23"><span class="problematic" id="id24">*</span></a></p>
+<ul class="simple">
+<li>#### collision shape</li>
+</ul>
+<p>If specified, the collision shape shall be considered. A body can still have a <strong>mesh</strong> specified for visualization and then this <strong>collision shape</strong> item for using a primitive shape for collisions. Supported shapes are BOX, CYLINDER, CAPSULE, CONE, and SPHERE
+<a href="#id25"><span class="problematic" id="id26">**</span></a><a href="#id27"><span class="problematic" id="id28">*</span></a></p>
+<ul class="simple">
+<li>#### collision geometry</li>
+</ul>
+<p>The geometry for the <strong>collision shape</strong> defined above. For a box, x, y, and z are required, for rest of the shapes; radius and height are required.
+<a href="#id29"><span class="problematic" id="id30">**</span></a><a href="#id31"><span class="problematic" id="id32">*</span></a></p>
+<ul class="simple">
+<li>#### mass: 0.3</li>
+</ul>
+<p>This is the mass of the body. If the mass is set to 0, the body is kinematic.</p>
+<p><a href="#id33"><span class="problematic" id="id34">**</span></a><a href="#id35"><span class="problematic" id="id36">*</span></a></p>
+<ul class="simple">
+<li>#### location:</li>
+</ul>
+<p>This is the initial location of the body in the world frame. This location will of course change as the simulation goes on and the body interacts with other objects in the simulation</p>
+<p><a href="#id37"><span class="problematic" id="id38">**</span></a><a href="#id39"><span class="problematic" id="id40">*</span></a></p>
+<ul class="simple">
+<li>#### inertia:</li>
+</ul>
+<p>This is the principal inertia of the object. If not specified. It is computed internally by utilizing the collision mesh’s geometry</p>
+<p><a href="#id41"><span class="problematic" id="id42">**</span></a><a href="#id43"><span class="problematic" id="id44">*</span></a></p>
+<ul class="simple">
+<li>#### inertial offset:</li>
+</ul>
+<p>This is the inertial offset from the mesh origin. This helps in giving the user the ability to define a mesh’s origin at a convenient location without having to place it at the body’s center of mass. The inertial offset can then be added. If the inertial offset if not specified, it is computed internally by the AMBF Framework based on the collision mesh’s geometry.</p>
+<p><a href="#id45"><span class="problematic" id="id46">**</span></a><a href="#id47"><span class="problematic" id="id48">*</span></a></p>
+<ul class="simple">
+<li>#### publish children names:</li>
+</ul>
+<p>Boolean to enable/disable publishing of children names for this body in its <strong>afState Message</strong>
+<a href="#id49"><span class="problematic" id="id50">**</span></a><a href="#id51"><span class="problematic" id="id52">*</span></a></p>
+<ul class="simple">
+<li>#### publish joint names:</li>
+</ul>
+<p>Boolean to enable/disable publishing of joint names for this body in its <strong>afState Message</strong>
+<a href="#id53"><span class="problematic" id="id54">**</span></a><a href="#id55"><span class="problematic" id="id56">*</span></a></p>
+<ul class="simple">
+<li>#### publish joint positions:</li>
+</ul>
+<p>Boolean to enable/disable publishing of joint positions for this body in its <strong>afState Message</strong>
+<a href="#id57"><span class="problematic" id="id58">**</span></a><a href="#id59"><span class="problematic" id="id60">*</span></a></p>
+<ul class="simple">
+<li>#### friction:</li>
+</ul>
+<p>Surface friction for the body.
+<a href="#id61"><span class="problematic" id="id62">**</span></a><a href="#id63"><span class="problematic" id="id64">*</span></a></p>
+<ul class="simple">
+<li>#### damping:</li>
+</ul>
+<p>Damping for this body. A value in the range [0-1]
+<a href="#id65"><span class="problematic" id="id66">**</span></a><a href="#id67"><span class="problematic" id="id68">*</span></a></p>
+<ul class="simple">
+<li>#### restitution:</li>
+</ul>
+<p>Restitution for the body. A value in the range[0-1]. 1 means full conservation of energy on collision and 0 means all energy dissipated
+<a href="#id69"><span class="problematic" id="id70">**</span></a><a href="#id71"><span class="problematic" id="id72">*</span></a></p>
+<ul class="simple">
+<li>#### collision groups:</li>
+</ul>
+<p>A list of integers to classify what collision groups if this body part of.
+<a href="#id73"><span class="problematic" id="id74">**</span></a><a href="#id75"><span class="problematic" id="id76">*</span></a></p>
+<ul class="simple">
+<li>#### controller:</li>
+</ul>
+<p>Linear and Angular controller’s PD gains for the body. If not specified, they are estimated from the body’s mass and inertia.
+<a href="#id77"><span class="problematic" id="id78">**</span></a><a href="#id79"><span class="problematic" id="id80">*</span></a></p>
+<ul class="simple">
+<li>#### color:</li>
+</ul>
+<p>There are three different ways of specifying the color for a body. You can either use the <strong>color</strong> key and then specify a color from the [ambf/ambf_models/descriptions/color/colors.yaml](<a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/color/colors.yaml">https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/color/colors.yaml</a>)</p>
+<p><a href="#id81"><span class="problematic" id="id82">**</span></a><a href="#id83"><span class="problematic" id="id84">*</span></a></p>
+<ul class="simple">
+<li>#### color rgba:</li>
+</ul>
+<p>Instead of picking a color name as in the field above. You can specify the raw color value using:
+<code class="docutils literal notranslate"><span class="pre">`yaml</span>
+<span class="pre">color</span> <span class="pre">rgba:</span> <span class="pre">{r:</span> <span class="pre">0.5,</span> <span class="pre">g:</span> <span class="pre">0.5,</span> <span class="pre">b:</span> <span class="pre">0.5,</span> <span class="pre">a:</span> <span class="pre">1.0}.</span>
+<span class="pre">`</span></code></p>
+<p><a href="#id85"><span class="problematic" id="id86">**</span></a><a href="#id87"><span class="problematic" id="id88">*</span></a></p>
+<ul class="simple">
+<li>#### color components:</li>
+</ul>
+<p>For even greater control of color. You can use the color components key:</p>
+<p><a href="#id89"><span class="problematic" id="id90">``</span></a><a href="#id91"><span class="problematic" id="id92">`</span></a>yaml
+color components:</p>
+<blockquote>
+<div>ambient: {level: 1.0}
+diffuse: {r: 0.955, g: 0.4814, b: 0.3072}
+specular: {r: 1.0, g: 1.0, b: 1.0}
+transparency: 1.0</div></blockquote>
+<p><a href="#id93"><span class="problematic" id="id94">``</span></a><a href="#id95"><span class="problematic" id="id96">`</span></a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="multibody-joint-data-block.html" class="btn btn-neutral float-right" title="Joint Data-Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="multibody-header-data-block.html" class="btn btn-neutral float-left" title="Header Data-Block" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright WPI AIM LAB
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The AMBF Format &mdash; AMBF Docs 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Header Data-Block" href="multibody-header-data-block.html" />
+    <link rel="prev" title="World Command Payload" href="world-command-payload.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../concepts.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="understanding-ros-message-payloads.html">The General Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-state-payload.html">Object State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-command-payload.html">Object Command Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-state-payload.html">World State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-command-payload.html">World Command Payload</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The AMBF Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-anatomy-of-the-ambf-format">The Anatomy of the AMBF Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-header-data-block.html">Header Data-Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-body-data-block.html">Body Data-Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-joint-data-block.html">Joint Data-Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multibody-sensor-data-block.html">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AMBF Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../concepts.html">Concepts</a> &raquo;</li>
+        
+      <li>The AMBF Format</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/concepts/the-ambf-format.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-ambf-format">
+<h1>The AMBF Format<a class="headerlink" href="#the-ambf-format" title="Permalink to this headline">¶</a></h1>
+<p>The AMBF Description Format uses YAML to specify Bodies, Joints, Lights, Cameras and Sensors. The format
+has been developed to make it easier for users to develop complex interconnected robots and mechanisms with fully customizable dynamic parameters while keeping the syntax easy and human readable. On one hand, this format has been inspired by <strong>URDF</strong> (Unified Robot Description Format) and <strong>SDF</strong> (Simulation Description Format) while on the other it’s has been developed to address the key limitations and complexities of both URDF and SDF. The first and foremost goal of the format is the choice or markup language (YAML). In our experience, YAML is much easier to read and modify.</p>
+<div class="section" id="the-anatomy-of-the-ambf-format">
+<h2>The Anatomy of the AMBF Format<a class="headerlink" href="#the-anatomy-of-the-ambf-format" title="Permalink to this headline">¶</a></h2>
+<p>In general, the current version 0.1 of the AMBF Format can specify the following objects
+* <strong>Rigid Bodies (Kinematic and Dynamic)</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Cartesian Controllers for these Bodies</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><strong>Soft Bodies</strong></li>
+<li><strong>Joints</strong><ul>
+<li>Types of Joints<ul>
+<li>Prismatic or Slider Joints</li>
+<li>Revolute, Hinge or Continous Joints</li>
+<li>Point To Point or P2P Constraints</li>
+<li>Fixed Joints</li>
+<li>Linear Springs</li>
+<li>Torsion or Angular Springs</li>
+</ul>
+</li>
+<li>Joint Controllers</li>
+</ul>
+</li>
+<li><strong>Multiple Cameras as Viewports</strong></li>
+<li><strong>Lights</strong></li>
+<li><strong>Sensors</strong><ul>
+<li>Types of Sensors<ul>
+<li>Proximity Sensors (using Ray Tracing)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>## Delving Deeper into the AMBF Format
+We can start by examining a very basic example of a multibody defined by the AMBF Format. This multibody Consists
+of two Rigid Bodies and a Joint.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">bodies</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">BodyA</span><span class="p p-Indicator">,</span> <span class="nv">BodyB</span><span class="p p-Indicator">]</span>
+<span class="nt">joints</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">JointA</span><span class="p p-Indicator">]</span>
+<span class="nt">high resolution path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./high_res/</span>
+<span class="nt">low resolution path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./low_res/</span>
+<span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ambf/env/</span>
+
+<span class="nt">BodyA</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base_plate</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base_plate.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">-1.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">color</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">orange_tomato</span>
+
+<span class="nt">BodyB</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latch</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latch.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.3</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">1.571</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.85</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">-1.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">inertial offset</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.162</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">-0.003</span><span class="p p-Indicator">}</span>
+  <span class="nt">color</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_crimson</span>
+
+<span class="nt">JointA</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hinge_AB</span>
+  <span class="nt">parent</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BodyA</span>
+  <span class="nt">child</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BodyB</span>
+  <span class="nt">parent axis</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">parent pivot</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.85</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">child axis</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">child pivot</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">}</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">revolute</span>
+</pre></div>
+</div>
+<p>Let’s start examining the different subsections of this config file. We can call each section a data-block. Towards this end, this config file can be broken down into four data-blocks which are explained below</p>
+<ol class="arabic simple">
+<li>Header or Global Data-Block</li>
+<li>BodyA Data-Block</li>
+<li>BodyB Data-Block</li>
+<li>JointA Data-Block</li>
+</ol>
+<p>The whole concept of AMBF revolves around the asynchronous concept of data-blocks. The data blocks can potentially be split into different config files and should work independently of each other even though they can be related to each other by constraints. More on this later.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="multibody-header-data-block.html" class="btn btn-neutral float-right" title="Header Data-Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="world-command-payload.html" class="btn btn-neutral float-left" title="World Command Payload" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright WPI AIM LAB
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

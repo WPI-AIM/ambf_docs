@@ -4,10 +4,9 @@
 Tutorials
 =========
 
-The tutorial is split into several subsections, and it is meant to be read
+The tutorials are split into several subsections, and are meant to be read
 in a sequential fashion. Users are encouraged to read the tutorial before moving
 on to the full :ref:`C++ reference <reference>`.
-
 
 
 .. only:: builder_html and (not singlehtml)

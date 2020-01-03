@@ -135,6 +135,7 @@ As a demo, some premade RQT files have been placed in `ambf/ambf_utilities/rqt_p
 In a terminal, launch rqt_gui using:
 
 .. code-block:: python
+
     rosrun rqt_gui rqt_gui
 
 Now in the top menu of rqt_gui, navigate to `Perspectives` -> `Import`
@@ -254,6 +255,7 @@ Controlling a Toy Car with Suspension
 This is an example of how to begin using the AMBF Simulator. Let's start by going to the launch file in your local cloned repository. This launch file is located in `ambf/ambf_models/descriptions/launch <https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml>`_.
 
 .. code-block:: yaml
+
     # This is the base file for Coordination Application
     world config: ./world/world.yaml
     color config: ./color/colors.yaml
@@ -279,6 +281,7 @@ We can see that the **Toy Car(s)** are defined at Index 0 (Simple) and 1 (With S
 Now let's launch the simulator as follows:
 
 .. code-block:: shell
+
     cd ~/ambf/bin/<os>
     ./ambf_simulator -l 1
 
@@ -289,6 +292,7 @@ Now we need one more modification. Open the `ambf/ambf_models/descriptions/multi
 Let's scroll down to the definition of **Body ShockFL**
 
 .. code-block:: yaml
+
     BODY ShockFL:
       name: ShockFL
       mesh: ShockFL.STL
@@ -315,6 +319,7 @@ We need to add three lines anywhere inside the body definition. The three lines 
 as follows:
 
 .. code-block:: yaml
+
     publish children names: true
     publish joint names: true
     publish joint positions: true
@@ -322,6 +327,7 @@ as follows:
 Your resulting **BODY ShockFL** block should look like this:
 
 .. code-block:: yaml
+
     BODY ShockFL:
       name: ShockFL
       mesh: ShockFL.STL
@@ -350,6 +356,7 @@ Your resulting **BODY ShockFL** block should look like this:
 Let's do the exact same thing in the **BODY ShockFR** block such that it should end up looking like this:
 
 .. code-block:: yaml
+
     BODY ShockFR:
       name: ShockFR
       mesh: ShockFR.STL
