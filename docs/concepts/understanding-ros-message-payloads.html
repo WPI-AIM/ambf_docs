@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The General Concept &mdash; AMBF Docs 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Object State Payload" href="object-state-payload.html" />
+    <link rel="prev" title="Concepts" href="../concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../concepts.html">Concepts</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The General Concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-dynamic-bodies-vs-kinematic-bodies">Controlling dynamic bodies vs kinematic bodies:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parenting-of-bodies-and-joints">Parenting of bodies and joints:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#note">Note:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="object-state-payload.html">Object State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-command-payload.html">Object Command Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-state-payload.html">World State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-command-payload.html">World Command Payload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AMBF Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../concepts.html">Concepts</a> &raquo;</li>
+        
+      <li>The General Concept</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/concepts/understanding-ros-message-payloads.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-general-concept">
+<h1>The General Concept<a class="headerlink" href="#the-general-concept" title="Permalink to this headline">¶</a></h1>
+<p>To take full advantage of AMBF, it should be installed on Linux (Ubuntu 16, 17, 18) with a working installation of ROS. All the simulated/visual objects in the AMBF simulator (kinematic bodies, dynamic bodies, connected bodies, lights and cameras) are controllable using ROS messages. Each simulated/visual object (conveniently called _afObject_) communicates bidirectionally using <strong>ambf_msgs/ObjectState</strong> and <strong>ambf_msgs/ObjectCmd</strong> message types. The <strong>ObjectState</strong> is an outgoing message from the simulator that describes the state of the object. The <strong>ObjectCmd</strong> is the incoming message to the simulator and can be used to change the state of the corresponding _afObject_. A similar concept exists for the World where the only difference is that World exists as a single entity and thus has a single State/Command message pair. The message payloads are defined and discussed in the subsections.</p>
+<div class="section" id="controlling-dynamic-bodies-vs-kinematic-bodies">
+<h2>Controlling dynamic bodies vs kinematic bodies:<a class="headerlink" href="#controlling-dynamic-bodies-vs-kinematic-bodies" title="Permalink to this headline">¶</a></h2>
+<p>Kinematic and dynamic bodies are controlled using the same afCommand message type. If an object is kinematic (which could be a camera or a light or a plain kinematic body), the boolean flag <strong>enable_position_controller</strong> has to be set to <strong>1</strong> in the afObjectCmd message. This is necessary as by default the <strong>enable_position_controller</strong> is set to <strong>0</strong> and the AMBF simulator takes the wrench command. For kinematic bodies, wrench commands are meaningless.</p>
+<p>If the corresponding body is Dynamic (has non-zero mass and inertia), the <strong>enable_position_controller</strong> can be set to <strong>1</strong> or <strong>0</strong> to inform the AMBF Simulator to consider Pose or Wrench commands respectively. For Position Commands, the AMBF Simulator runs an internal PID Loop. The gains for this controller are directly set in the AMBF Description of the body.</p>
+</div>
+<div class="section" id="parenting-of-bodies-and-joints">
+<h2>Parenting of bodies and joints:<a class="headerlink" href="#parenting-of-bodies-and-joints" title="Permalink to this headline">¶</a></h2>
+<p>It is important to point out the way parenting works in the AMBF Simulator. This table sheds some light on this where the nodes (circles) can be considered as bodies and the arrows as joints. The resulting parenting is shown in the same table.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/AMBF%20Densely%20Connected%20Bodies2.png"><img alt="Densely connected bodies" src="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/AMBF%20Densely%20Connected%20Bodies2.png" /></a>
+</div>
+<p>Based on this image, children bodies are in fact all the bodies lower in the hierarchy to a specific body. This is reflected in the <strong>afObjectState</strong> and <strong>afObjectCommand</strong> messages.</p>
+</div>
+<div class="section" id="note">
+<h2>Note:<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h2>
+<p>A robot can have a large number of children bodies and joints and thus transmitting their names and positions using the <strong>children_name</strong>, <strong>joint_names</strong> and <strong>joint_positions</strong> payload fields can eat up the socket communication. Towards this end, the AMBF Description of the Robot / Multi-Body comes in handy. By default, the bodies are set to <strong>NOT</strong> publish <strong>children_names</strong> and <strong>joint_positions</strong> and <strong>ONLY</strong> publish <strong>joint_names</strong>. This can, of course, be overridden using the AMBF Description of Robot by specifying the following three optional fields for any <strong>afObject</strong>.</p>
+<ul class="simple">
+<li><strong>publish children names</strong>: True or False</li>
+<li><strong>publish joint names</strong>: True or False</li>
+<li><strong>publish joint positions</strong>: True or False</li>
+</ul>
+<p>Lastly, visual objects such as Cameras and Lights do not have joints.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>// TODO</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="object-state-payload.html" class="btn btn-neutral float-right" title="Object State Payload" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../concepts.html" class="btn btn-neutral float-left" title="Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright WPI AIM LAB
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Object Command Payload &mdash; AMBF Docs 0.4.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/js/version_switch.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="World State Payload" href="world-state-payload.html" />
+    <link rel="prev" title="Object State Payload" href="object-state-payload.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ambf.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../concepts.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="understanding-ros-message-payloads.html">The General Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-state-payload.html">Object State Payload</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Object Command Payload</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#afobject-command-message">afObject Command Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-controllers">Types of Controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#body-s-pose-control">Body’s Pose Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connected-bodies-joint-control">Connected Bodies Joint Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#joint-names"><strong>joint_names:*</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="world-state-payload.html">World State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="world-command-payload.html">World Command Payload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AMBF Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../concepts.html">Concepts</a> &raquo;</li>
+        
+      <li>Object Command Payload</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/concepts/object-command-payload.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="object-command-payload">
+<h1>Object Command Payload<a class="headerlink" href="#object-command-payload" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="afobject-command-message">
+<h2>afObject Command Message<a class="headerlink" href="#afobject-command-message" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ObjectCmd Payload</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>header</strong></td>
+<td>The ROS message header includes <strong>seq_number</strong>, <strong>time_stamp</strong> and <strong>frame_id</strong>. <strong>frame_id</strong> not used for now</td>
+</tr>
+<tr class="row-odd"><td><strong>pose</strong></td>
+<td>The pose command (position and orientation) in Parent frame</td>
+</tr>
+<tr class="row-even"><td><strong>wrench</strong></td>
+<td>The wrench command (force and torque) for this body in World Frame</td>
+</tr>
+<tr class="row-odd"><td><strong>enable_position_controller</strong></td>
+<td>Boolean to inform which command to consider <strong>1</strong> for <strong>pose Command</strong> &amp;  <strong>0</strong> for <strong>wrench Command</strong></td>
+</tr>
+<tr class="row-even"><td><strong>joint_cmds</strong></td>
+<td>An array of joint commands for children joints</td>
+</tr>
+<tr class="row-odd"><td><strong>position_controller_mask</strong></td>
+<td>A mask to inform if the joint command is a Position Control Target or Effort Command</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="types-of-controllers">
+<h2>Types of Controllers<a class="headerlink" href="#types-of-controllers" title="Permalink to this headline">¶</a></h2>
+<p>The ObjectCmd has two distinct control fields. One being the afBody’s Cartesian Pose Control using <strong>pose</strong>, <strong>wrench</strong> and <strong>enable_position_control</strong> payload fields and the other being the joint control of connected bodies using the <strong>joint_cmds</strong> and <strong>position_control_mask</strong> payload fileds.</p>
+<div class="section" id="body-s-pose-control">
+<h3>Body’s Pose Control<a class="headerlink" href="#body-s-pose-control" title="Permalink to this headline">¶</a></h3>
+<p>The payload fields (<strong>pose</strong>, <strong>wrench</strong> and <strong>enable_position_control</strong>) are designed to control the body in either <strong>Cartesian Wrench Control</strong> Mode or <strong>Cartesian Position Control</strong> Mode. The <strong>pose</strong> and <strong>wrench</strong> fields serve to control the equivalent pose or wrench of the object whose topic is being published to. The selection between <strong>pose</strong> and <strong>wrench</strong> command depends on the flag <strong>enable_position_control</strong>. When this flag is <strong>0</strong> (default), <strong>wrench</strong> command is considered while <strong>pose</strong> command is considered for when it’s <strong>1</strong>. The controller gains for <strong>pose</strong> command are set directly in the bodies AMBF Description File. The <strong>wrench</strong> field does not require any controller gains.</p>
+</div>
+<div class="section" id="connected-bodies-joint-control">
+<h3>Connected Bodies Joint Control<a class="headerlink" href="#connected-bodies-joint-control" title="Permalink to this headline">¶</a></h3>
+<p>The payload fields (<strong>joint_cmds</strong> and <strong>position_control_mask</strong>) are designed to control the children joints of the relevant afBody. The <strong>joints_cmds</strong> array is set in the order of the joint_names* from the corresponding ObjectState message of the Object a user is trying to control. One can echo the <strong>joint_names*</strong> in the ObjectState message to see what joints a body has (if any) and what order are they are stored. The size of the joint commands array depends on the number of joints, however, it’s not required to fill in all the joints. For example, if the user intends to control the first 2 of the listed 10 joints, just setting the first two elements in the array should yield the desired result. Similarly, the <strong>position_controller_mask</strong> can be set to <strong>1</strong>’s for the joints that require position control, and <strong>0</strong> for open loop effort. Similar to afBody’s Pose control, the controller gains for the joints positions are set directly in the AMBF description file.</p>
+<p>If one wants to directly control the pose or wrench of any child Object, it can be accomplished by utilizing the corresponding objects’ afObjectCmd (just like in the last section)</p>
+</div>
+<div class="section" id="joint-names">
+<h3><strong>joint_names:*</strong><a class="headerlink" href="#joint-names" title="Permalink to this headline">¶</a></h3>
+<p>Only the root bodies of a connected tree of bodies are set to publish the <strong>children_names</strong>, <strong>joint_names</strong>, <strong>joint_positions</strong>. This can be easily changed by either setting the the last three fields in the afObjectCmd message or by modifying the corresponding AMBF Description file. Here is a simple example of an afBody data block where the fileds <strong>publish_children_names</strong>, <strong>pubish_joint_names* and **publish_joint_positions</strong> have been added and set to <strong>true</strong>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">BODY WristPlatform</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WristPlatform</span>
+  <span class="nt">mesh</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WristPlatform.STL</span>
+  <span class="nt">mass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.4</span>
+  <span class="nt">collision margin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
+  <span class="nt">scale</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+  <span class="nt">publish children names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+  <span class="nt">publish joint names</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+  <span class="nt">publish joint positions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+  <span class="nt">location</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">-0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-3.136</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">-0.136</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0.002</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">-0.319</span><span class="p p-Indicator">}</span>
+  <span class="nt">inertial offset</span><span class="p">:</span>
+    <span class="nt">orientation</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">p</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">0</span><span class="p p-Indicator">}</span>
+    <span class="nt">position</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span> <span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span> <span class="nv">-0.055</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span> <span class="nv">-0.054</span><span class="p p-Indicator">}</span>
+  <span class="nt">friction</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">rolling</span><span class="p">:</span> <span class="nv">0.01</span><span class="p p-Indicator">,</span><span class="nt"> static</span><span class="p">:</span> <span class="nv">0.5</span><span class="p p-Indicator">}</span>
+  <span class="nt">damping</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">angular</span><span class="p">:</span> <span class="nv">0.9</span><span class="p p-Indicator">,</span><span class="nt"> linear</span><span class="p">:</span> <span class="nv">0.9</span><span class="p p-Indicator">}</span>
+  <span class="nt">restitution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="nt">collision groups</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+  <span class="nt">color components</span><span class="p">:</span>
+    <span class="nt">ambient</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">level</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">diffuse</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">0.4576</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">0.3377</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">0.0488</span><span class="p p-Indicator">}</span>
+    <span class="nt">specular</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">b</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> g</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="nt"> r</span><span class="p">:</span> <span class="nv">1.0</span><span class="p p-Indicator">}</span>
+    <span class="nt">transparency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
+<p>You can do this for any afBody before launching the simulator.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="world-state-payload.html" class="btn btn-neutral float-right" title="World State Payload" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object-state-payload.html" class="btn btn-neutral float-left" title="Object State Payload" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright WPI AIM LAB
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

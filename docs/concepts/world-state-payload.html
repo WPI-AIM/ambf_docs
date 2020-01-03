@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installing AMBF Simulator &mdash; AMBF Docs 0.4.3 documentation</title>
+  <title>World State Payload &mdash; AMBF Docs 0.4.3 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installing AMBF Blender Addon" href="ambf-blender-addon.html" />
-    <link rel="prev" title="Installation" href="../installation.html" /> 
+    <link rel="next" title="World Command Payload" href="world-command-payload.html" />
+    <link rel="prev" title="Object Command Payload" href="object-command-payload.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,17 +92,19 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Installation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing AMBF Simulator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tested-platforms">Tested Platforms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building">Building</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ambf-blender-addon.html">Installing AMBF Blender Addon</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../concepts.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="understanding-ros-message-payloads.html">The General Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-state-payload.html">Object State Payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object-command-payload.html">Object Command Payload</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">World State Payload</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#afworld-state-message">afWorld State Message</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="world-command-payload.html">World Command Payload</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -154,15 +156,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../installation.html">Installation</a> &raquo;</li>
+          <li><a href="../concepts.html">Concepts</a> &raquo;</li>
         
-      <li>Installing AMBF Simulator</li>
+      <li>World State Payload</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/installation/ambf-install.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/concepts/world-state-payload.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,42 +177,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installing-ambf-simulator">
-<span id="install-ambf-simulator"></span><h1>Installing AMBF Simulator<a class="headerlink" href="#installing-ambf-simulator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="tested-platforms">
-<h2>Tested Platforms<a class="headerlink" href="#tested-platforms" title="Permalink to this headline">¶</a></h2>
-<p>AMBF has been tested on <strong>Ubuntu 16.04</strong> and <strong>Ubuntu 18.04</strong>. We need a few extra steps on <strong>Ubuntu 14.04</strong>, please create an issue if you would like to get instructions for that.</p>
-<p>Even though it is recommended to use Linux for the full feature set of AMBF Simulator using ROS, AMBF has been tested on <strong>MacOS Maverick</strong> and <strong>MacOS Mojave</strong> without ROS support.</p>
-</div>
-<div class="section" id="building">
-<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
-<p>On Linux machines, you might need to install the <code class="code docutils literal notranslate"><span class="pre">libasound2-dev</span></code> package.</p>
-<p>Boost libraires ship with Ubuntu systems, but on Mac OS, you might need to install them explicitly.</p>
-<p>For this purpose, on <strong>Mac OS</strong>, if you don’t have Boost</p>
-<ol class="arabic simple">
-<li>Install <strong>Xcode</strong> from App Store</li>
-<li>Install <strong>command line tools</strong> by running in terminal <code class="code docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code></li>
-<li>Install <strong>Homebrew</strong> view running this in terminal <code class="code docutils literal notranslate"><span class="pre">/usr/bin/ruby</span> <span class="pre">-e</span> <span class="pre">&quot;$(curl</span> <span class="pre">-fsSL</span> <span class="pre">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span></code></li>
-<li>Install <strong>boost</strong> by running the following in the terminal <code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">boost</span></code></li>
-</ol>
-<p>To build the framework (Linux and Mac-OS):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
-git clone https://github.com/WPI-AIM/ambf.git
-<span class="nb">cd</span> ambf <span class="o">&amp;&amp;</span> mkdir build
-<span class="nb">cd</span> build
-cmake ..
-make
-</pre></div>
-</div>
-<p>On Linux systems, please source the correct folder to achieve system wide availability of AMBF ROS modules.
-While in the build folder, you can run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ./devel/setup.bash
-</pre></div>
-</div>
-<p>You can also permanently add the install location in your .bashrc with the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;source ~/ambf/build/devel/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
-</pre></div>
-</div>
+  <div class="section" id="world-state-payload">
+<h1>World State Payload<a class="headerlink" href="#world-state-payload" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="afworld-state-message">
+<h2>afWorld State Message<a class="headerlink" href="#afworld-state-message" title="Permalink to this headline">¶</a></h2>
+<p>There exists a single instance of simulation World called <strong>afWorld</strong>. Similar to <strong>afObjects</strong>, _afWorld_ is controllable using <strong>ambf_msgs/afWorldCmd</strong> message and relays its state using the <strong>ambf_msgs/afWorldState</strong> message.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">WorldState Payload</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>header</strong></td>
+<td>The ROS message header includes <strong>seq_number</strong>, <strong>time_stamp</strong> and <strong>frame_id</strong>. <strong>frame_id</strong> not used for now</td>
+</tr>
+<tr class="row-odd"><td><strong>dynamic_loop_freq</strong></td>
+<td>The frequency of underlying pyhsics solver loop</td>
+</tr>
+<tr class="row-even"><td><strong>n_devices</strong></td>
+<td>The number of haptics/input devices currently connected AMBF Simulator</td>
+</tr>
+<tr class="row-odd"><td><strong>sim_step</strong></td>
+<td>The number of simulation steps of the physics solver. This keeps incrementing</td>
+</tr>
+<tr class="row-even"><td><strong>wall_time</strong></td>
+<td>The System Clock (Wall Clock) in seconds</td>
+</tr>
+<tr class="row-odd"><td><strong>sim_time</strong></td>
+<td>The time of the physics simulation. For RT <strong>sim_time</strong> == <strong>wall_time</strong></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -222,10 +224,10 @@ While in the build folder, you can run:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ambf-blender-addon.html" class="btn btn-neutral float-right" title="Installing AMBF Blender Addon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="world-command-payload.html" class="btn btn-neutral float-right" title="World Command Payload" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="object-command-payload.html" class="btn btn-neutral float-left" title="Object Command Payload" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

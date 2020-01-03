@@ -128,6 +128,7 @@ Sections
       introduction.rst
       installation.rst
       tutorials.rst
+      concepts.rst
       reference.rst
       changelog.rst
       faq.rst

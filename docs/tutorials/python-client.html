@@ -99,7 +99,16 @@
 <li class="toctree-l2"><a class="reference internal" href="robot-modeling-basics.html">Robot modeling basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sdf-import.html">SDF file import</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subsection">Subsection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-ambf-python-client">The AMBF Python Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-dvrk-manipulators">Controlling dVRK Manipulators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-via-rqt-gui">Controlling via RQT GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-via-ambf-python-client">Controlling via AMBF Python Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-a-toy-car-with-suspension">Controlling a Toy Car with Suspension</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-using-the-python-client">Controlling using the Python Client</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ros-interface.html">ROS Interface</a></li>
@@ -107,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="parallel-mechanisms.html">Parallel mechanisms</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -181,8 +191,370 @@
             
   <div class="section" id="python-client">
 <h1>Python Client<a class="headerlink" href="#python-client" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subsection">
-<h2>Subsection<a class="headerlink" href="#subsection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-ambf-python-client">
+<h2>The AMBF Python Client<a class="headerlink" href="#the-ambf-python-client" title="Permalink to this headline">¶</a></h2>
+<p>This simplest way to interact with simulated bodies, <code class="code docutils literal notranslate"><span class="pre">robots/multi-bodies</span></code>, kinematic and visual objects in the AMBF simulator is by using the high-speed Asynchronous Communication that is implemented via ROS-topics in the AMBF Framework Library. One can use either using C++ or Python for creating applications for this purpose. For ease of interaction we provide a convenient Python Client which can be used as follows:</p>
+<p>For full feature set of the AMBF Simulator, it is advised that you install it on Linux (Ubuntu) 16,17 or 18. Other variants might be supported but have not yet been tested.</p>
+<p>Start the AMBF Simulator with your choice of Multi-Body config file that can be directly set in the <code class="code docutils literal notranslate"><span class="pre">ambf_models/launch.yaml</span></code> file.</p>
+<p>In your python application</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Client from ambf_comm package</span>
+<span class="kn">from</span> <span class="nn">ambf_client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Create a instance of the client</span>
+<span class="n">_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+
+<span class="c1"># Connect the client which in turn creates callable objects from ROS topics</span>
+<span class="c1"># and initiates a shared pool of threads for bidrectional communication</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="c1"># You can print the names of objects found</span>
+<span class="k">print</span><span class="p">(</span><span class="n">_client</span><span class="o">.</span><span class="n">get_obj_names</span><span class="p">())</span>
+
+<span class="c1"># Lets say from the list of printed names, we want to get the</span>
+<span class="c1"># handle to an object names &quot;Torus&quot;</span>
+<span class="n">torus_obj</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;Torus&#39;</span><span class="p">)</span>
+
+<span class="c1"># Now you can use the torus_obj to set and get its position, rotation,</span>
+<span class="c1"># Pose etc. If the object has joints, you can also control them</span>
+<span class="c1"># in either position control mode or open loop effort mode. You can even mix and</span>
+<span class="c1"># match the joints commands</span>
+<span class="n">torus_obj</span><span class="o">.</span><span class="n">set_pos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Set the XYZ Pos in obj&#39;s World frame</span>
+<span class="n">torus_obj</span><span class="o">.</span><span class="n">set_rpy</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Set the Fixed RPY in World frame</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Sleep for a while to see the effect of the command before moving on</span>
+
+<span class="c1"># Other methods to control the obj position include</span>
+<span class="c1"># torus_obj.set_pose(pose_cmd) # Where pose_cmd is of type Geometry_msgs/Pose</span>
+<span class="c1"># torus_obj.set_rot(quaterion) # Where quaternion is a list in the order of [qx, qy, qz, qw]</span>
+<span class="c1"># Finally all the position control params can be controlled in a single method call</span>
+<span class="c1"># torus_obj.pose_command(px, py, pz, roll, pitch, yaw, *jnt_cmds)</span>
+
+<span class="c1"># We can just as easily get the pose information of the obj</span>
+<span class="n">cur_pos</span> <span class="o">=</span> <span class="n">torus_obj</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span> <span class="c1"># xyx position in World frame</span>
+<span class="n">cur_rot</span> <span class="o">=</span> <span class="n">torus_obj</span><span class="o">.</span><span class="n">get_rot</span><span class="p">()</span> <span class="c1"># Quaternion in World frame</span>
+<span class="n">cur_rpy</span> <span class="o">=</span> <span class="n">torus_obj</span><span class="o">.</span><span class="n">get_rpy</span><span class="p">()</span> <span class="c1"># Fixed RPY in World frame</span>
+
+<span class="c1"># Similarly you can directly control the wrench acting on the obj by</span>
+<span class="n">torus_obj</span><span class="o">.</span><span class="n">set_force</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># Set the force in the World frame</span>
+<span class="n">torus_obj</span><span class="o">.</span><span class="n">set_torque</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span> <span class="c1"># Set the torque in the World frame</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Sleep for a while to see the effect of the command before moving on</span>
+
+<span class="c1"># Similarly you can directly control the wrench acting on the obj by</span>
+<span class="c1"># The key difference is that it&#39;s the user&#39;s job to update the forces</span>
+<span class="c1"># and torques in a loop otherwise the wrench in cleared after an internal</span>
+<span class="c1"># watchdog timer expires if a new command is not set. This is for safety</span>
+<span class="c1"># reasons where a user shouldn&#39;t set a wrench and then forget about it.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">):</span>
+    <span class="n">torus_obj</span><span class="o">.</span><span class="n">set_force</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># Set the force in the World frame</span>
+    <span class="n">torus_obj</span><span class="o">.</span><span class="n">set_torque</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span> <span class="c1"># Set the torque in the World frame</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># Sleep for a while to see the effect of the command before moving on</span>
+
+<span class="c1"># We can get the number of children and joints connected to this body as</span>
+<span class="n">num_joints</span> <span class="o">=</span> <span class="n">torus_obj</span><span class="o">.</span><span class="n">get_num_joints</span><span class="p">()</span> <span class="c1"># Get the number of joints of this object</span>
+<span class="n">children_names</span> <span class="o">=</span> <span class="n">torus_obj</span><span class="o">.</span><span class="n">get_children_names</span><span class="p">()</span> <span class="c1"># Get a list of children names belonging to this obj</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">num_joints</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">children_names</span><span class="p">)</span>
+
+<span class="c1"># If the obj has some joints, we can control them as follows</span>
+<span class="k">if</span> <span class="n">num_joints</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">torus_obj</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># The the joints at idx 0 to 0.5 Radian</span>
+    <span class="n">torus_obj</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Set the effort of joint at idx 1 to 5 Nm</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Sleep for a while to see the effect of the command before moving on</span>
+
+<span class="c1"># Lastly to cleanup</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">clean_up</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="controlling-dvrk-manipulators">
+<h2>Controlling dVRK Manipulators<a class="headerlink" href="#controlling-dvrk-manipulators" title="Permalink to this headline">¶</a></h2>
+<p>This is an example of how to begin using the AMBF Simulator. Let’s start by going to the launch file in your local cloned repository. This launch file is located in <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the base file for Coordination Application</span>
+<span class="nt">world config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./world/world.yaml</span>
+<span class="nt">color config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./color/colors.yaml</span>
+<span class="nt">input devices config</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./input_devices/input_devices.yaml</span>
+<span class="nt">multibody configs</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">1. &quot;./multi-bodies/robots/blender-toy-car.yaml&quot;</span> <span class="c1">#0</span>
+  <span class="l l-Scalar l-Scalar-Plain">2. &quot;./multi-bodies/robots/blender-toy-car2.yaml&quot;</span> <span class="c1">#1</span>
+  <span class="l l-Scalar l-Scalar-Plain">3. &quot;./multi-bodies/robots/blender-neuro-robot.yaml&quot;</span> <span class="c1">#2</span>
+  <span class="l l-Scalar l-Scalar-Plain">4. &quot;./multi-bodies/robots/blender-raven2.yaml&quot;</span> <span class="c1">#3</span>
+  <span class="l l-Scalar l-Scalar-Plain">5. &quot;./multi-bodies/robots/blender-mtm.yaml&quot;</span> <span class="c1">#4</span>
+  <span class="l l-Scalar l-Scalar-Plain">6. &quot;./multi-bodies/robots/blender-psm.yaml&quot;</span> <span class="c1">#5</span>
+  <span class="l l-Scalar l-Scalar-Plain">7. &quot;./multi-bodies/robots/blender-ecm.yaml&quot;</span> <span class="c1">#6</span>
+  <span class="l l-Scalar l-Scalar-Plain">8. &quot;./multi-bodies/robots/blender-suj.yaml&quot;</span> <span class="c1">#7</span>
+  <span class="l l-Scalar l-Scalar-Plain">9. &quot;./multi-bodies/robots/blender-kuka.yaml&quot;</span> <span class="c1">#8</span>
+  <span class="l l-Scalar l-Scalar-Plain">10. &quot;./multi-bodies/robots/blender-pr2.yaml&quot;</span> <span class="c1">#9</span>
+  <span class="l l-Scalar l-Scalar-Plain">11. &quot;./multi-bodies/puzzles/parallel_structure.yaml&quot;</span> <span class="c1">#10</span>
+  <span class="l l-Scalar l-Scalar-Plain">12. &quot;./multi-bodies/puzzles/puzzle1.yaml&quot;</span> <span class="c1">#11</span>
+  <span class="l l-Scalar l-Scalar-Plain">13. &quot;./multi-bodies/puzzles/puzzle2.yaml&quot;</span> <span class="c1">#12</span>
+</pre></div>
+</div>
+<p>We can see that the dVRK Manipulators are defined at Index 4 (MTM), 5 (PSM) and 6 (ECM).</p>
+<p>Now let’s launch the simulator as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cd ~/ambf/bin/&lt;os&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">./ambf_simulator -l 4,5,6</span>
+</pre></div>
+</div>
+<p>Do you see the dVRK ECM, PSM, and MTM as shown below? If yes, great, otherwise close the simulator and double check to see that the indexes match the dVRK manipulators in your <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a> file.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/dVRK%20Arms%20AMBF%20Simulator.png"><img alt="Kuka Robot and frames" src="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/dVRK%20Arms%20AMBF%20Simulator.png" /></a>
+</div>
+<div class="section" id="controlling-via-rqt-gui">
+<h3>Controlling via RQT GUI<a class="headerlink" href="#controlling-via-rqt-gui" title="Permalink to this headline">¶</a></h3>
+<p>As a demo, some premade RQT files have been placed in <a class="reference external" href="https://github.com/WPI-AIM/ambf/tree/master/ambf_utilities/rqt_perspectives">ambf/ambf_utilities/rqt_perspectives</a> to get you up and running.
+In a terminal, launch rqt_gui using:</p>
+<p>Now in the top menu of rqt_gui, navigate to <cite>Perspectives</cite> -&gt; <cite>Import</cite></p>
+<p>From the file browser, head to <a class="reference external" href="https://github.com/WPI-AIM/ambf/tree/master/ambf_utilities/rqt_perspectives">ambf/ambf_utilities/rqt_perspectives</a> and select the <cite>ecm-psm-mtm-rqt-gui.perspective</cite> file.
+Note that AMBF could be installed in a non-default path in your system, so make sure to go to the correct path.</p>
+<p>Great. You should see some topics already visible for selection in the rqt_gui. Select the checkbox for any topics to see the effect on the corresponding dVRK manipulator. Uncheck the checkbox to reset the commands. You can expand the topics in the RQT Gui to see what kind of command are we issuing to the manipulators.</p>
+</div>
+<div class="section" id="controlling-via-ambf-python-client">
+<h3>Controlling via AMBF Python Client<a class="headerlink" href="#controlling-via-ambf-python-client" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s use the provided python client for finer control of the manipulators. you can use the following python code snippet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Client from ambf_client package</span>
+<span class="kn">from</span> <span class="nn">ambf_client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Create a instance of the client</span>
+<span class="n">_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+
+<span class="c1"># Connect the client which in turn creates callable objects from ROS topics</span>
+<span class="c1"># and initiates a shared pool of threads for bi-directional communication</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;We can see what objects the client has found. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># You can print the names of objects found. We should see all the links found</span>
+<span class="k">print</span><span class="p">(</span><span class="n">_client</span><span class="o">.</span><span class="n">get_obj_names</span><span class="p">())</span>
+
+<span class="c1"># Lets get a handle to PSM and ECM, as we can see in the printed</span>
+<span class="c1"># object names, &#39;ecm/baselink&#39; and &#39;psm/baselink&#39; should exist</span>
+<span class="n">ecm_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;ecm/baselink&#39;</span><span class="p">)</span>
+<span class="n">psm_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;psm/baselink&#39;</span><span class="p">)</span>
+
+<span class="c1"># Similarly we can get a handle to any link lower in the hierarchy rather</span>
+<span class="c1"># than the root link. Let&#39;s get a handle to MTMs wrist platform link</span>
+<span class="n">mtm_wrist_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;mtm/WristYaw&#39;</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s sleep for a very brief moment to give the internal callbacks</span>
+<span class="c1"># to sync up new data from the running simulator</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s Get Some Pose Info. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Not we can print the pos and rotation of object in the World Frame</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;ECM Base Pos:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ecm_handle</span><span class="o">.</span><span class="n">get_pos</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;PSM Base Rotation as Quaternion:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">psm_handle</span><span class="o">.</span><span class="n">get_rot</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;MTM Wrist Fixed Rotation:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mtm_wrist_handle</span><span class="o">.</span><span class="n">get_rpy</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s get Joints and Children Info. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># We can get the number of children and joints connected to each object as</span>
+<span class="n">ecm_num_joints</span> <span class="o">=</span> <span class="n">ecm_handle</span><span class="o">.</span><span class="n">get_num_joints</span><span class="p">()</span> <span class="c1"># Get the number of joints of this object</span>
+<span class="n">psm_children_names</span> <span class="o">=</span> <span class="n">psm_handle</span><span class="o">.</span><span class="n">get_children_names</span><span class="p">()</span> <span class="c1"># Get a list of children names belonging to this obj</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of Joints in ECM:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ecm_num_joints</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Name of PSM</span><span class="se">\&#39;</span><span class="s1">s children:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">psm_children_names</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Control ECMs joint positions. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Now let&#39;s control some joints</span>
+<span class="c1"># The 1st joint, which the ECM Yaw</span>
+<span class="n">ecm_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># The 2nd joint, which is the ECM Pitch</span>
+<span class="n">ecm_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="c1"># The 3rd Kinematic or 7th Actual Joint, which is the Prismatic Insertion Joint</span>
+<span class="n">ecm_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Mixed Pos and Effort control of PSM</span><span class="se">\&#39;</span><span class="s2">s joints. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># For the PSM let&#39;s control some in position and some in effort mode</span>
+<span class="c1"># The 1st joint, which the PSM Yaw</span>
+<span class="n">psm_handle</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># The 3rd Kinematic joint, which is the PSM Insertion Joint</span>
+<span class="n">psm_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Set force on MTM&#39;s Wrist Yaw link for 5 secs. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Let&#39;s directly control the forces and torques on the mtmWristYaw Link</span>
+<span class="c1"># Notice that these are in the world frame. Another important thing to notice</span>
+<span class="c1"># is that unlike position control, forces control requires a continuous update</span>
+<span class="c1"># to meet a watchdog timing condition otherwise the forces are reset Null. This</span>
+<span class="c1"># is purely for safety reasons to prevent unchecked forces in case of malfunctioning</span>
+<span class="c1"># python client code</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">):</span>
+    <span class="n">mtm_wrist_handle</span><span class="o">.</span><span class="n">set_force</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># Set 10 N in the World Z axis</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># Run the loop for 10 seconds</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Set wrench on MTM&#39;s Wrist Yaw link for 5 secs. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Similarly we can individually apply the torque</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">):</span>
+    <span class="n">mtm_wrist_handle</span><span class="o">.</span><span class="n">set_torque</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Set 10 Nm in the World Y axis</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># Run the loop for 10 seconds</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s clean up. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Lastly to cleanup</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">clean_up</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="controlling-a-toy-car-with-suspension">
+<h2>Controlling a Toy Car with Suspension<a class="headerlink" href="#controlling-a-toy-car-with-suspension" title="Permalink to this headline">¶</a></h2>
+<p>This is an example of how to begin using the AMBF Simulator. Let’s start by going to the launch file in your local cloned repository. This launch file is located in <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a>.</p>
+<p>We can see that the <strong>Toy Car(s)</strong> are defined at Index 0 (Simple) and 1 (With Suspension).</p>
+<p>Now let’s launch the simulator as follows:</p>
+<p>Do you see the toy-car as shown below? If yes, great, otherwise close the simulator and double check to see that the indexes match the toy-car in your <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a> file.</p>
+<p>Now we need one more modification. Open the <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/multi-bodies/robots/blender-toy-car2.yaml">ambf/ambf_models/descriptions/multi-bodies/robots/blender-toy-car2.yaml</a> in your favorite text editor. We need to add some additional launch variables which would tell the simulator to <strong>publish children</strong> and <strong>joint names</strong> of <strong>non-root</strong> bodies. By default, the Simulator publishes the joint names and joint positions of root links and not the links that occur down the hierarchy. This can be easily changed in the AMBF description file of a <code class="code docutils literal notranslate"><span class="pre">Robot/Multibody</span></code>.</p>
+<p>Let’s scroll down to the definition of <strong>Body ShockFL</strong></p>
+<p>We need to add three lines anywhere inside the body definition. The three lines that we want to add are
+as follows:</p>
+<p>Your resulting <strong>BODY ShockFL</strong> block should look like this:</p>
+<p>Let’s do the exact same thing in the <strong>BODY ShockFR</strong> block such that it should end up looking like this:</p>
+<p>Be mindful of the white spaces as YAML is similar to Python in picking whitespace and tabs.</p>
+<p>Now let’s launch the simulator as described in <a class="reference external" href="https://github.com/WPI-AIM/ambf/wiki/Launching-the-Simulator">launching the Simulator</a>. Do you see a toy car as shown below? If yes, great, otherwise close the simulator and double check to see if you have any unintended whitespaces or extra tab spaces in the <a class="reference external" href="https://github.com/WPI-AIM/ambf/blob/master/ambf_models/descriptions/launch.yaml">ambf/ambf_models/descriptions/launch</a> file above. Correct these and relaunch the simulator</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/Toy%20Car.png"><img alt="Kuka Robot and frames" src="https://raw.githubusercontent.com/wiki/WPI-AIM/ambf/Images/Toy%20Car.png" /></a>
+</div>
+<div class="section" id="controlling-using-the-python-client">
+<h3>Controlling using the Python Client<a class="headerlink" href="#controlling-using-the-python-client" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s use the provided python client for finer control of the Toy Car. you can use the following python code snippet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Client from ambf_client package</span>
+<span class="kn">from</span> <span class="nn">ambf_client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Create a instance of the client</span>
+<span class="n">_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+
+<span class="c1"># Connect the client which in turn creates callable objects from ROS topics</span>
+<span class="c1"># and initiates a shared pool of threads for bi-directional communication</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;We can see what objects the client has found. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># You can print the names of objects found. We should see all the links found</span>
+<span class="k">print</span><span class="p">(</span><span class="n">_client</span><span class="o">.</span><span class="n">get_obj_names</span><span class="p">())</span>
+
+<span class="c1"># Lets get a handle the chassis of the toy car</span>
+<span class="n">chassis_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;Chassis&#39;</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s get a handle to the two front suspensions which have the wheels</span>
+<span class="c1"># as their children</span>
+<span class="n">shock_fr_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;ShockFR&#39;</span><span class="p">)</span>
+<span class="n">shock_fl_handle</span> <span class="o">=</span> <span class="n">_client</span><span class="o">.</span><span class="n">get_obj_handle</span><span class="p">(</span><span class="s1">&#39;ShockFL&#39;</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s sleep for a very brief moment to give the internal callbacks</span>
+<span class="c1"># to sync up new data from the running simulator</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s Get Some Pose Info. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Not we can print the pos and rotation of object in the World Frame</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Chassis Pos:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_pos</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Chassis Rot:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_rot</span><span class="p">())</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s get Joints and Children Info. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># We can get the number of children and joints connected to each object as</span>
+<span class="n">chassis_num_joints</span> <span class="o">=</span> <span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_num_joints</span><span class="p">()</span> <span class="c1"># Get the number of joints of this object</span>
+<span class="n">chassis_joint_names</span> <span class="o">=</span> <span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_joint_names</span><span class="p">()</span> <span class="c1"># Get a list of children names belonging to this obj</span>
+<span class="n">chassis_children_names</span> <span class="o">=</span> <span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_children_names</span><span class="p">()</span> <span class="c1"># Get a list of children names belonging to this obj</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of Joints in Chassis:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chassis_num_joints</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Joint names for Chassis:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chassis_joint_names</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Name of Chassis</span><span class="se">\&#39;</span><span class="s1"> children:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chassis_children_names</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Control Wheel Angles. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># In this example, rather than controlling the joints from Chassis, lets control</span>
+<span class="c1"># them from lower down the hierarchy. In this case, we shall use the FR Shock and FL</span>
+<span class="c1"># Shock which parent the FR Wheel and FL Wheel respectively.</span>
+
+<span class="c1"># Set the position of FL wheel</span>
+<span class="n">shock_fl_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.57</span><span class="p">)</span>
+
+<span class="c1"># Set the Position of FR Wheel</span>
+<span class="n">shock_fr_handle</span><span class="o">.</span><span class="n">set_joint_pos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Control Wheel Torques. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Now lets directly control the wheel torques.</span>
+<span class="n">shock_fl_handle</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="c1"># Set some torque for FR Wheel</span>
+<span class="n">shock_fr_handle</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="c1"># Lets sleep for a few seconds to see the effect</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">shock_fl_handle</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="c1"># Set some torque for FR Wheel</span>
+<span class="n">shock_fr_handle</span><span class="o">.</span><span class="n">set_joint_effort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Set force on Chassis for 5 secs. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Let&#39;s directly control the forces and torques on the Chassis Link</span>
+<span class="c1"># Notice that these are in the world frame. Another important thing to notice</span>
+<span class="c1"># is that unlike position control, forces control requires a continuous update</span>
+<span class="c1"># to meet a watchdog timing condition otherwise the forces are cleared. This</span>
+<span class="c1"># is purely for safety reasons to prevent unchecked forces in case of malfunctioning</span>
+<span class="c1"># python client code</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">):</span>
+    <span class="n">chassis_handle</span><span class="o">.</span><span class="n">set_force</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Set 100 N in the World Z axis</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Run the loop for 5 seconds</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Set torque on Chassis for 2 secs. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Similarly we can individually apply the torque</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">):</span>
+    <span class="n">chassis_handle</span><span class="o">.</span><span class="n">set_torque</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># Set 100 Nm in the World Z axis</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Run the loop for 2 seconds</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Set force on Chassis in Body Frame 5 secs. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># The above force and torques were in the World frame. In many instances we care</span>
+<span class="c1"># about setting the wrench in body frame. This is just as convenient. Lets see how to</span>
+<span class="c1"># do that.</span>
+<span class="c1">#</span>
+<span class="c1"># Make sure you have PyKDL installed</span>
+<span class="kn">from</span> <span class="nn">PyKDL</span> <span class="kn">import</span> <span class="n">Rotation</span><span class="p">,</span> <span class="n">Vector</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">):</span>
+    <span class="n">cur_rot</span> <span class="o">=</span> <span class="n">chassis_handle</span><span class="o">.</span><span class="n">get_rot</span><span class="p">()</span>
+    <span class="c1"># Rotation of Chassis in World</span>
+    <span class="n">R_cINw</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">Quaternion</span><span class="p">(</span><span class="n">cur_rot</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">cur_rot</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">cur_rot</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">cur_rot</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">fw</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Lets set a force along body&#39;s X axis</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="n">R_cINw</span> <span class="o">*</span> <span class="n">fw</span>  <span class="c1"># Converted force in World Frame that would act in Body Frame</span>
+    <span class="n">chassis_handle</span><span class="o">.</span><span class="n">set_force</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">fc</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">fc</span><span class="o">.</span><span class="n">z</span><span class="p">())</span>  <span class="c1"># Set 100 N in the World Z axis</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Run the loop for 5 seconds</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">----&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s clean up. Press Enter to continue...&quot;</span><span class="p">)</span>
+<span class="c1"># Lastly to cleanup</span>
+<span class="n">_client</span><span class="o">.</span><span class="n">clean_up</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
