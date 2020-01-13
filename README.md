@@ -1,6 +1,6 @@
 ### AMBF Simulator Documentation Repository
 
-### [wpi-aim.github.io/ambf_docs](wpi-aim.github.io/ambf_docs)
+### [wpi-aim.github.io/ambf_docs](https://wpi-aim.github.io/ambf_docs)
 
 Check out the **AMBF** (Asynchronous Multi-Body Framework) [GitHub repository](https://github.com/WPI-AIM/ambf)
 
