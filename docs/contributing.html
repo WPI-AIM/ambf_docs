@@ -100,13 +100,8 @@
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#modifying-the-theme">Modifying the theme</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-your-environment">Set up your environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#making-changes">Making changes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#translations">Translations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#releasing-the-theme">Releasing the theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute-to-the-ambf-project">Contribute to the AMBF Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute-to-the-ambf-documentation">Contribute to the AMBF Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -175,103 +170,13 @@
             
   <div class="section" id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<p>This project follows the Read the Docs <a class="reference external" href="https://docs.readthedocs.io/en/latest/code-of-conduct.html" title="(in Read the Docs v3.11.1)"><span class="xref std std-doc">code of conduct</span></a>. If you are not familiar with our code of conduct policy,
-take a minute to read the policy before starting with your first contribution.</p>
-<div class="section" id="modifying-the-theme">
-<h2>Modifying the theme<a class="headerlink" href="#modifying-the-theme" title="Permalink to this headline">¶</a></h2>
-<p>The styles for this theme use <a class="reference external" href="http://www.sass-lang.com">SASS</a> and a custom CSS framework called <a class="reference external" href="http://www.github.com/snide/wyrm/">Wyrm</a>. We
-use <a class="reference external" href="https://webpack.js.org/">Webpack</a> and <a class="reference external" href="https://github.com/sass/node-sass">node-sass</a> to build the CSS. <a class="reference external" href="https://webpack.js.org/">Webpack</a> is used to watch for
-changes, rebuild the static assets, and rebuild the Sphinx demo documentation.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The installation of Node is outside the scope of this documentation. You
-will need Node version 10+ in order to make changes to this theme.</p>
+<div class="section" id="contribute-to-the-ambf-project">
+<h2>Contribute to the AMBF Project<a class="headerlink" href="#contribute-to-the-ambf-project" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
 </div>
-<div class="section" id="set-up-your-environment">
-<h3>Set up your environment<a class="headerlink" href="#set-up-your-environment" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic">
-<li><p class="first">Install <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> and documentation build dependencies.</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -e &#39;.[dev]&#39;
-</pre></div>
-</div>
-</li>
-<li><p class="first">Install <a class="reference external" href="https://webpack.js.org/">Webpack</a>, <a class="reference external" href="https://github.com/sass/node-sass">node-sass</a>, and theme dependencies locally.</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm install
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="making-changes">
-<h3>Making changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h3>
-<p>Changes to the theme can be compiled and tested with <a class="reference external" href="https://webpack.js.org/">Webpack</a>:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm run dev
-</pre></div>
-</div>
-<p>This script will do the following:</p>
-<ol class="arabic simple">
-<li>Install and update any dependencies.</li>
-<li>Build the static CSS from SASS source files.</li>
-<li>Build the demo documentation.</li>
-<li>Watch for changes to the SASS files and documentation and rebuild everything
-on any detected changes.</li>
-</ol>
-<p>Alternatively, if you don’t need to watch the files, the release build script
-can be used to test built assets:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm run build
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="translations">
-<h2>Translations<a class="headerlink" href="#translations" title="Permalink to this headline">¶</a></h2>
-<p>Translations are managed using <a class="reference external" href="https://www.transifex.com/readthedocs/sphinx-rtd-theme">Transifex</a>. You can join any of the existing
-language teams or request a new language is added to the project. For more
-information on our translation standards, see our docs on
-<a class="reference external" href="https://docs.readthedocs.io/en/latest/development/i18n.html" title="(in Read the Docs v3.11.1)"><span>Internationalization</span></a></p>
-<p>Periodically, core team should update the translation files outside our normal
-releases. Someone from the core team, with write access to Transifex, should run
-the following:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py update_translations
-</pre></div>
-</div>
-<p>This will extract new messages, upload the messages to Transifex, and will
-update our local translation files. Changes can be checked in to a branch and
-put up for review.</p>
-</div>
-<div class="section" id="releasing-the-theme">
-<h2>Releasing the theme<a class="headerlink" href="#releasing-the-theme" title="Permalink to this headline">¶</a></h2>
-<p>To release a new version of the theme, core team will take the following steps:</p>
-<ol class="arabic">
-<li><p class="first">Bump the version in <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme/__init__.py</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and
-<code class="docutils literal notranslate"><span class="pre">package.json</span></code>.  We follow <a class="reference external" href="http://semver.org/">semver</a> and <a class="reference external" href="https://www.python.org/dev/peps/pep-0440/">PEP440</a>
-(with regards to alpha release and development versions). The version
-increment should reflect these releases and any potentially breaking changes.</p>
-</li>
-<li><p class="first">Update the changelog (<code class="docutils literal notranslate"><span class="pre">docs/changelog.rst</span></code>) with the version information.</p>
-</li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">update_translations</span></code> to compile new translation files
-and update Transifex.</p>
-</li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code> to rebuild all the theme assets and the Python
-package.</p>
-</li>
-<li><p class="first">Commit these changes.</p>
-</li>
-<li><p class="first">Tag the release in git: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">$NEW_VERSION</span></code>.</p>
-</li>
-<li><p class="first">Push the tag to GitHub: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--tags</span> <span class="pre">origin</span></code>.</p>
-</li>
-<li><p class="first">Upload the package to PyPI:</p>
-<blockquote>
-<div><div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -rf dist/
-$ python setup.py sdist bdist_wheel
-$ twine upload --sign --identity security@readthedocs.org dist/*
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-</ol>
+<div class="section" id="contribute-to-the-ambf-documentation">
+<h2>Contribute to the AMBF Documentation<a class="headerlink" href="#contribute-to-the-ambf-documentation" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
 </div>
 </div>
 
